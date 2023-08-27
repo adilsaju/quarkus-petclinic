@@ -1,4 +1,4 @@
-= Quarkus Petclinic project
+= Quarkus Petclinic projec
 
 == Run Locally
 
