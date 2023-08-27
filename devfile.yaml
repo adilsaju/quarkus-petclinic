@@ -23,7 +23,7 @@ components:
     image:
       imageName: java-quarkus-image:latest
       dockerfile:
-        uri: src/main/docker/Dockerfile.jvm
+        uri: Dockerfile.jvm
         buildContext: .
         rootRequired: false
   - name: kubernetes-deploy
