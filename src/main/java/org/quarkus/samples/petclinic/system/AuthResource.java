@@ -37,9 +37,18 @@ public class AuthResource {
     public Response login(@FormParam("email") String email, @FormParam("password") String password) {
         System.out.println("startrek");
         System.out.println(PasswordHasher.hashPassword("changeme"));
-        User user = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+        User user = null;
+        try {
+            user = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
             .setParameter("email", email)
             .getSingleResult();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        System.out.println("t2222");
+        System.out.println(user);
+
         // password.equals(user.getPassword())
         if (user != null && PasswordHasher.verifyPassword(password, user.getPassword()) ) {
             // return "Authentication successful";
@@ -75,7 +84,7 @@ public class AuthResource {
     @Path("/logout")
     @Produces(MediaType.TEXT_HTML)
     public Response logout() throws FileNotFoundException {
-        return Response.seeOther(UriBuilder.fromPath("/").build()).build();
+        return Response.seeOther(UriBuilder.fromPath("/auth/login-page").build()).build();
     }
 
     // @GET
