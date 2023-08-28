@@ -53,5 +53,5 @@ INSERT INTO visits(id, pet_id, visit_date, description) VALUES (1003, 1008, '201
 INSERT INTO visits(id, pet_id, visit_date, description) VALUES (1004, 1007, '2013-01-04', 'spayed');
 
 
-INSERT INTO users(id, email, password) VALUES (1, 'adilsaju@gmail.com', 'changeme');
-INSERT INTO users(id, email, password) VALUES (2, 'tiago@gmail.com', 'changeme');
+INSERT INTO users(id, email, password) VALUES (1, 'adilsaju@gmail.com', '$2a$10$Esnpb/RSa3H/aC6heX0POOHHoNcR9Zepnd9OKNG4qjYMi7pGkLuW6');
+INSERT INTO users(id, email, password) VALUES (2, 'tiago@gmail.com', '$2a$10$Esnpb/RSa3H/aC6heX0POOHHoNcR9Zepnd9OKNG4qjYMi7pGkLuW6');
