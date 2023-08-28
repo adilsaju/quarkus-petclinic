@@ -1,4 +1,5 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3
+RUN pwd
 RUN ./mvnw package
 WORKDIR /work/
 RUN chown 1001 /work \
