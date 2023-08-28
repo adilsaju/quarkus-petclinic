@@ -68,11 +68,11 @@ public class AuthResource {
         return Response.ok(new FileInputStream("META-INF/resources/register.html")).build();
     }
 
-    @GET
-    @Path("/")
-    public Response redirectToLoginPage() {
-        return Response.seeOther(UriBuilder.fromPath("/auth/login-page").build()).build();
-    }
+    // @GET
+    // @Path("/")
+    // public Response redirectToLoginPage() {
+    //     return Response.seeOther(UriBuilder.fromPath("/auth/login-page").build()).build();
+    // }
 
 }
 
