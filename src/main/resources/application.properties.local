@@ -20,3 +20,13 @@ quarkus.kubernetes.service-type=load-balancer
 quarkus.http.enable-compression=true
 quarkus.http.enable-decompression=true
 quarkus.qute.strict-rendering=true
+
+%dev.quarkus.http.routes.root.regex=/
+%dev.quarkus.http.routes.root.path=/auth/login-page
+
+quarkus.http.auth.basic=true
+quarkus.security.users.embedded=true
+quarkus.security.users.embedded.users.admin.password=$2a$10$Esnpb/RSa3H/aC6heX0POOHHoNcR9Zepnd9OKNG4qjYMi7pGkLuW6
+
+quarkus.smallrye-jwt.enabled=true
+quarkus.smallrye-jwt.auth-mechanism=MP-JWT

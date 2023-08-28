@@ -7,6 +7,7 @@ import io.quarkus.qute.TemplateInstance;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,6 +21,7 @@ public class VetResource {
     TemplatesLocale templates;
 
     @GET
+    @RolesAllowed("admin")
     @Path("/vets.html")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance showResourcesVetPage() {
