@@ -21,6 +21,9 @@ public interface AppMessages {
     @Message("Find Owners")
     String find_owners();
 
+    @Message("login")
+    String login();
+
     @Message("Name")
     String name();
 
