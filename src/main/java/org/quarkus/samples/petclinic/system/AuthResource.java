@@ -14,6 +14,8 @@ import javax.ws.rs.core.UriBuilder;
 import org.quarkus.samples.petclinic.owner.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 @Path("/auth")
 public class AuthResource {
@@ -33,12 +35,13 @@ public class AuthResource {
 
     // public Response login(LoginRequest request) {
     public Response login(@FormParam("email") String email, @FormParam("password") String password) {
-
+        System.out.println("startrek");
+        System.out.println(PasswordHasher.hashPassword("changeme"));
         User user = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
             .setParameter("email", email)
             .getSingleResult();
-
-        if (user != null && password.equals(user.getPassword()) ) {
+        // password.equals(user.getPassword())
+        if (user != null && PasswordHasher.verifyPassword(password, user.getPassword()) ) {
             // return "Authentication successful";
             return Response.seeOther(UriBuilder.fromPath("/").build()).build();
 
@@ -66,6 +69,13 @@ public class AuthResource {
     @Produces(MediaType.TEXT_HTML)
     public Response registerPage() throws FileNotFoundException {
         return Response.ok(new FileInputStream("META-INF/resources/register.html")).build();
+    }
+
+    @GET
+    @Path("/logout")
+    @Produces(MediaType.TEXT_HTML)
+    public Response logout() throws FileNotFoundException {
+        return Response.seeOther(UriBuilder.fromPath("/").build()).build();
     }
 
     // @GET
@@ -99,5 +109,16 @@ class LoginRequest {
     @JsonProperty("password")
     public void setPassword(String password) {
         this.password = password;
+    }
+}
+
+
+class PasswordHasher {
+    public static String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public static boolean verifyPassword(String password, String hashedPassword) {
+        return BCrypt.checkpw(password, hashedPassword);
     }
 }

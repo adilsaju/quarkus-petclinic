@@ -23,7 +23,8 @@ public interface AppMessages {
 
     @Message("login")
     String login();
-
+    @Message("logout")
+    String logout();
     @Message("Name")
     String name();
 
